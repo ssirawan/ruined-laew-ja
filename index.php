@@ -1,6 +1,6 @@
 <?php
 
-echo "Hello World"; <br>
+echo "Hello World";
 echo "Pukky is cute";
 
 ?>
