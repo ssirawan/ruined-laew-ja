@@ -25,14 +25,13 @@ if ( sizeof($request_array['events']) > 0 )
 		{
 			$check=1;
 		}
-		else 
-			foreach ($tel as $value)
-			{
-				if($text == $value)
-				{
-					$check=2;
-				}
-			}
+	}
+	foreach ($tel as $value)
+	{
+		if($text == $value)
+		{
+			$check=2;
+		}
 	}
 	
 	if($check =1)
