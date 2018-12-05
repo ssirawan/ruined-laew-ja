@@ -20,7 +20,7 @@ if ( sizeof($request_array['events']) > 0 )
 	{
 		if($text==$hello[$x])
 		{
-			$reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
+			$reply_message = 'ระบบได้รับข้อความของคุณแล้ว';
 		}
 		else
 			$reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
