@@ -16,16 +16,18 @@ if ( sizeof($request_array['events']) > 0 )
    {
     $text = $event['message']['text'];
 	$hello = array('hi','hello','สวัสดี',);
-	for ($x=0;$x<=2;$x++)
+	$check =0;
+	foreach ($hello as $text)
 	{
-		if($text===$hello[$x])
+		if($text == $hello)
 		{
-			$reply_message = 'ระบบได้รับข้อความของคุณแล้ว';
+			$check=1;
 		}
-		else
-			$reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
 	}
-    //$reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
+	if ($check =1)
+	{
+		$reply_message = 'สวัสดี';
+	}
    }
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
