@@ -15,8 +15,8 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-	$car = array("'1'","1","1","ค้นหารถ","รถ","หารถ","ยี่ห้อรถ");
-	$tel = array("tel","เบอร์","หาเบอร์","2","'2'","โทร","เบอร์โทร");
+	$car = array('"1"',"1","ค้นหารถ","รถ","หารถ","ยี่ห้อรถ");
+	$tel = array("tel","เบอร์","หาเบอร์","2",'"2"',"โทร","เบอร์โทร");
 	$check = 0;
 	
 	foreach ($car as $value)
