@@ -17,14 +17,14 @@ if ( sizeof($request_array['events']) > 0 )
     $text = $event['message']['text'];
 	$hello = array('hi','hello','สวัสดี',);
 	$check =0;
-	foreach ($hello as $text)
+	foreach ($hello as $value)
 	{
-		if($text == $hello)
+		if($text == $value)
 		{
 			$check=1;
 		}
 	}
-	if ($check ==1)
+	if ($check == 1)
 	{
 		$reply_message = 'สวัสดี';
 	}
