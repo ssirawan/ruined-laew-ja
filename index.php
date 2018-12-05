@@ -28,6 +28,8 @@ if ( sizeof($request_array['events']) > 0 )
 	{
 		$reply_message = 'สวัสดี';
 	}
+	else
+		$reply_message = '0';
    }
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
