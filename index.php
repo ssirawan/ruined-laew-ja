@@ -18,25 +18,28 @@ if ( sizeof($request_array['events']) > 0 )
 	$car = array("'1'","1","1","ค้นหารถ","รถ","หารถ","ยี่ห้อรถ");
 	$tel = array("tel","เบอร์","หาเบอร์","2","'2'","โทร","เบอร์โทร");
 	$check = 0;
+	
 	foreach ($car as $value)
 	{
 		if($text == $value)
 		{
 			$check=1;
 		}
+		else 
+			foreach ($tel as $value)
+			{
+				if($text == $value)
+				{
+					$check=2;
+				}
+			}
 	}
-	foreach ($tel as $value)
-	{
-		if($text == $value)
-		{
-			$check=2;
-		}
-	}
+	
 	if($check =1)
 	{
 		$reply_message = 'ตอนนี้มีรถอยู่ในระบบจำนวน 20 คัน';
 	}
-	if($check =2)
+	elseif($check =2)
 	{
 		$reply_message = 'อู่คุณวิชัย 023334444';
 	}
