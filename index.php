@@ -34,11 +34,11 @@ if ( sizeof($request_array['events']) > 0 )
 		}
 	}
 	
-	if($check =1)
+	if($check ==1)
 	{
 		$reply_message = 'ตอนนี้มีรถอยู่ในระบบจำนวน 20 คัน';
 	}
-	elseif($check =2)
+	elseif($check ==2)
 	{
 		$reply_message = 'อู่คุณวิชัย 023334444';
 	}
