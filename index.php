@@ -24,7 +24,7 @@ if ( sizeof($request_array['events']) > 0 )
 			$check=1;
 		}
 	}
-	if ($check =1)
+	if ($check ==1)
 	{
 		$reply_message = 'สวัสดี';
 	}
