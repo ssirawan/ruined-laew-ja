@@ -18,7 +18,7 @@ if ( sizeof($request_array['events']) > 0 )
 	$hello = array('hi','hello','สวัสดี',);
 	for ($x=0;$x<=2;$x++)
 	{
-		if($text==$hello[$x])
+		if($text===$hello[$x])
 		{
 			$reply_message = 'ระบบได้รับข้อความของคุณแล้ว';
 		}
