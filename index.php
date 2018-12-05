@@ -15,21 +15,36 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-	$hello = array('hi','hello','สวัสดี',);
-	$check =0;
-	foreach ($hello as $value)
+	$car = array("'1'","1","1","ค้นหารถ","รถ","หารถ","ยี่ห้อรถ");
+	$tel = array("tel","เบอร์","หาเบอร์","2","'2'","โทร","เบอร์โทร");
+	$check = 0;
+	foreach ($car as $value)
 	{
 		if($text == $value)
 		{
 			$check=1;
 		}
 	}
-	if ($check == 1)
+	foreach ($tel as $value)
 	{
-		$reply_message = 'สวัสดี';
+		if($text == $value)
+		{
+			$check=2;
+		}
 	}
+	if($check =1)
+	{
+		$reply_message = 'ตอนนี้มีรถอยู่ในระบบจำนวน 20 คัน';
+	}
+	if($check =2)
+	{
+		$reply_message = 'อู่คุณวิชัย 023334444';
+	}
+		
 	else
-		$reply_message = '0';
+		$reply_message = 'พิมพ์ "1" เมื่อต้องการค้นหารถ <br>
+						   พิมพ์ "2" เมื่อต้องการค้นหาเบอร์ติดต่อของบริษัท<br>
+						   พิมพ์ "3" เมื่อต้องการตรวจสอบการเงิน';
    }
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
