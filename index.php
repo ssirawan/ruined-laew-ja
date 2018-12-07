@@ -50,7 +50,7 @@ if ( sizeof($request_array['events']) > 0 )
 	if($check ==1)
 	{
 		$result = pg_query("SELECT * FROM Customer");
-		$list = pg_fetch_row($result,null);
+		$list = pg_fetch_row($result);
 		$reply_message = $list[0];
 	}
 	elseif($check ==2)
