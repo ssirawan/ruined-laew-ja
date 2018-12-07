@@ -11,7 +11,9 @@ pg_query($db,"INSERT INTO public.Customer VALUES ('c01','Somkit')");
 $result = pg_query($db,"SELECT COUNT(*) FROM public.Customer");
 $list = pg_fetch_row($result);
 echo  "result = $list[0]";
-
+echo "/////";
+pg_query($db,"SELECT * FROM pg_catalog().pg_tables()");
+echo  "result = $list[0]";
 
 
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
