@@ -12,8 +12,9 @@ $result = pg_query($db,"SELECT COUNT(*) FROM public.Customer");
 $list = pg_fetch_row($result);
 echo  "result = $list[0]";
 echo "/////";
-pg_query($db,"SELECT 1+1");
-echo  "result = $list[0]";
+$result2 = pg_query($db,"SELECT 1+1");
+$list2 = pg_fetch_row($result2);
+echo  "result = $list2[0] <br>";
 
 
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
