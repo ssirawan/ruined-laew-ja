@@ -2,7 +2,7 @@
 
 //$db = pg_connect("dbname=dd9n7qflnjtae8 user=ynezixirsjupio password=8aa84c7e317c93709b62657ac0a26d2f8696df1eaee0f6bb108e6cd3a2ca4d22");
 $db = pg_connect("host=ec2-54-235-133-42.compute-1.amazonaws.com port=5432 dbname=dd9n7qflnjtae8 user=ynezixirsjupio password=8aa84c7e317c93709b62657ac0a26d2f8696df1eaee0f6bb108e6cd3a2ca4d22");
-
+echo $db;
 
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'vEcA9SC+uVHF+zBZZQod5Yp/fS2Xn+lUkqHKi1EE1OGXZjtGJlfwrKfkLFu+wOyVPGomLXbzjZOWaK7MQjJsJ3c0kPBhnDo2vxEdES6a2Kk8PnQNwJRLHbPslhqvzC1xk8lM8HLtnERPSG8oXBLNvwdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
@@ -80,7 +80,16 @@ if ( sizeof($request_array['events']) > 0 )
   }
  }
 }
+
 echo "OK";
+pg_query($db,"INSERT INTO Customer VALUES ('c01','Somkit')");
+$result = pg_query($db,"SELECT COUNT(*) FROM Customer");
+$list = pg_fetch_row($result);
+echo  "result = $list[0]";
+
+
+
+
 function send_reply_message($url, $post_header, $post_body)
 {
  $ch = curl_init($url);
