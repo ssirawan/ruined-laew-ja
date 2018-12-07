@@ -7,6 +7,12 @@ $db = pg_connect("host=ec2-54-235-133-42.compute-1.amazonaws.com port=5432 dbnam
 echo $db;
 
 if(!$db) {echo "error";}
+pg_query($db,"INSERT INTO public.Customer VALUES ('c01','Somkit')");
+$result = pg_query($db,"SELECT COUNT(*) FROM public.Customer");
+$list = pg_fetch_row($result);
+echo  "result = $list[0]";
+
+
 
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'vEcA9SC+uVHF+zBZZQod5Yp/fS2Xn+lUkqHKi1EE1OGXZjtGJlfwrKfkLFu+wOyVPGomLXbzjZOWaK7MQjJsJ3c0kPBhnDo2vxEdES6a2Kk8PnQNwJRLHbPslhqvzC1xk8lM8HLtnERPSG8oXBLNvwdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
@@ -86,10 +92,6 @@ if ( sizeof($request_array['events']) > 0 )
 }
 
 echo "OK";
-pg_query($db,"INSERT INTO Customer VALUES ('c01','Somkit')");
-$result = pg_query($db,"SELECT COUNT(*) FROM Customer");
-$list = pg_fetch_row($result);
-echo  "result = $list[0]";
 
 
 
