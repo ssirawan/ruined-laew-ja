@@ -1,14 +1,5 @@
 <?php
 
-/*
-$db=mysqli_connect("161.200.89.228","root","poom");
-mysqli_select_db($db,"2017_fg0");
-mysqli_query($db,"SET NAMES 'utf8' COLLATE 'utf8_general_ci';");
-//error_reporting(E_ALL & ~E_NOTICE);
-//error_reporting(0);
-
-*/
-
 $db = pg_connect("host=ec2-54-235-133-42.compute-1.amazonaws.com port=5432 dbname=dd9n7qflnjtae8 user=ynezixirsjupio password=8aa84c7e317c93709b62657ac0a26d2f8696df1eaee0f6bb108e6cd3a2ca4d22");
 
 
