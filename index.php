@@ -43,7 +43,7 @@ if ( sizeof($request_array['events']) > 0 )
 	{
 		$result = pg_query($db,"SELECT COUNT(*) FROM Customer");
 		$list = pg_fetch_row($result);
-		$reply_message = $list[0];
+		$reply_message = " result = $list[0]";
 	}
 	elseif($check ==2)
 	{
