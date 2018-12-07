@@ -1,7 +1,7 @@
 <?php
 
-$db = pg_connect("dbname=dd9n7qflnjtae8 user=ynezixirsjupio password=8aa84c7e317c93709b62657ac0a26d2f8696df1eaee0f6bb108e6cd3a2ca4d22");
-//$db = pg_connect("host=ec2-54-235-133-42.compute-1.amazonaws.com port=5432 dbname=dd9n7qflnjtae8 user=ynezixirsjupio password=8aa84c7e317c93709b62657ac0a26d2f8696df1eaee0f6bb108e6cd3a2ca4d22");
+//$db = pg_connect("dbname=dd9n7qflnjtae8 user=ynezixirsjupio password=8aa84c7e317c93709b62657ac0a26d2f8696df1eaee0f6bb108e6cd3a2ca4d22");
+$db = pg_connect("host=ec2-54-235-133-42.compute-1.amazonaws.com port=5432 dbname=dd9n7qflnjtae8 user=ynezixirsjupio password=8aa84c7e317c93709b62657ac0a26d2f8696df1eaee0f6bb108e6cd3a2ca4d22");
 
 
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
@@ -41,13 +41,13 @@ if ( sizeof($request_array['events']) > 0 )
 	
 	if($check ==1)
 	{
-		$result = pg_query("SELECT * FROM Customer");
+		$result = pg_query($db,"SELECT * FROM Customer");
 		$list = pg_fetch_row($result);
 		$reply_message = $list[0];
 	}
 	elseif($check ==2)
 	{
-		pg_query("INSERT INTO Customer VALUES ('c01','Somkit')");
+		pg_query($db,"INSERT INTO Customer VALUES ('c01','Somkit')");
 		$reply_message = 'อู่คุณวิชัย 023334444';
 	}
 	elseif($text==3)
