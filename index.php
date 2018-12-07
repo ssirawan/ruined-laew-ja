@@ -1,10 +1,14 @@
 <?php
 
+/*
 $db=mysqli_connect("161.200.89.228","root","poom");
 mysqli_select_db($db,"2017_fg0");
 mysqli_query($db,"SET NAMES 'utf8' COLLATE 'utf8_general_ci';");
 //error_reporting(E_ALL & ~E_NOTICE);
 //error_reporting(0);
+
+*/
+
 
 
 
@@ -45,7 +49,7 @@ if ( sizeof($request_array['events']) > 0 )
 	
 	if($check ==1)
 	{
-		$reply_message = 'ตอนนี้มีรถอยู่ในระบบจำนวน 20 คัน';
+		$reply_message = phpinfo();
 	}
 	elseif($check ==2)
 	{
