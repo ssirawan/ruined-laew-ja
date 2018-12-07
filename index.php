@@ -12,7 +12,7 @@ $result = pg_query($db,"SELECT COUNT(*) FROM public.Customer");
 $list = pg_fetch_row($result);
 echo  "result = $list[0]";
 echo "/////";
-pg_query($db,"SELECT * FROM pg_catalog().pg_tables()");
+pg_query($db,"SELECT 1+1");
 echo  "result = $list[0]";
 
 
