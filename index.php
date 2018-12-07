@@ -49,11 +49,7 @@ if ( sizeof($request_array['events']) > 0 )
 	
 	if($check ==1)
 	{
-		ob_start();
-		phpinfo();
-		
-		$reply_message = ob_get_contents();
-		ob_clean();	
+		$reply_message = phpversion();
 	}
 	elseif($check ==2)
 	{
