@@ -49,7 +49,7 @@ if ( sizeof($request_array['events']) > 0 )
 	
 	if($check ==1)
 	{
-		$reply_message = phpversion();
+		$reply_message = phpversion('mysqli');
 	}
 	elseif($check ==2)
 	{
