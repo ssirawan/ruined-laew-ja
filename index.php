@@ -16,7 +16,7 @@ $result2 = pg_query($db,"SELECT 1+1");
 $list2 = pg_fetch_row($result2);
 echo  "result = $list2[0] <br>";
 
-$result = pg_query($db,"SELECT datname FROM pg_database");
+$result = pg_query($db,"SELECT datname FROM pg_catalog.pg_tables");
 while ($list = pg_fetch_row($result))
 echo  "result = $list[0]<br>";
 
