@@ -20,11 +20,11 @@ $result = pg_query($db,"SELECT datname FROM pg_catalog.pg_tables");
 while ($list = pg_fetch_row($result))
 echo  "result = $list[0]<br>";
 */
-pg_query($db,"CREATE TABLE Cus (c1 TYPE charactor varying) ");
-pg_query($db,"INSERT INTO Cus VALUES ('c')");
+pg_query($db,"CREATE TABLE Cus (c1 TYPE integer) ");
+pg_query($db,"INSERT INTO Cus VALUES (8)");
 $result = pg_query($db,"SELECT COUNT(*) FROM Cus");
 $list = pg_fetch_row($result);
-echo  "result = $list[0]";
+echo  "result = $list[0] <br>";
 
 
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
