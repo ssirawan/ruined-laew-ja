@@ -23,6 +23,7 @@ echo  "result = $list[0]<br>";
 //pg_query($db,"CREATE TABLE Cus (c1 varchar(40) NOT NULL) ");
 
 pg_query($db,"INSERT INTO Cus VALUES ('9')");
+pg_query($db,"INSERT INTO Cus VALUES ('10')");
 $result = pg_query($db,"SELECT COUNT(*) FROM Cus");
 $list = pg_fetch_row($result);
 echo  "result = $list[0] <br>";
