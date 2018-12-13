@@ -5,6 +5,12 @@ error_reporting(E_ALL & ~E_NOTICE);
 $db = pg_connect("host=ec2-54-235-133-42.compute-1.amazonaws.com port=5432 dbname=dd9n7qflnjtae8 user=ynezixirsjupio password=8aa84c7e317c93709b62657ac0a26d2f8696df1eaee0f6bb108e6cd3a2ca4d22");
 echo $db;
 
+pg_query($db,"CREATE TABLE CarPoll (
+Brand varchar(20) NOT NULL,
+Count varchar(10) NOT NULL
+)");
+
+
 /*
 if(!$db) {echo "error";}
 pg_query($db,"INSERT INTO public.Customer VALUES ('c01','Somkit')");
@@ -60,8 +66,8 @@ if ( sizeof($request_array['events']) > 0 )
   if ( $event['type'] == 'message' ) 
   {
    $userid = $event['source']['userId'];
-   
    $findtable = pg_query($db,"SELECT COUNT(*) FROM $userid");
+   // $row = pg_query($db,) ตัวแปร = ชื่อแบรนด์ ละ row
    if( pg_fetch_result($findtable) == 0)
    {
 	   pg_query($db,"CREATE TABLE $userid (Reply varchar(100) NOT NULL)");
@@ -81,6 +87,7 @@ if ( sizeof($request_array['events']) > 0 )
     	}
     	else
     	{
+	//$reply_message = "ร่วมโหวตแบรนด์รถยนต์ที่คุณสนใจ"."\n". "ตัวแปรชื่อแบรนด์";	
 	$add = pg_query($db,"INSERT INTO $userid VALUES ('$text')");
 	$reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ 'Total' เพื่อตรวจสอบจำนวนข้อมูลในระบบ";}
    	}
