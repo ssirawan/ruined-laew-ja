@@ -59,49 +59,31 @@ if ( sizeof($request_array['events']) > 0 )
   $reply_token = $event['replyToken'];
   if ( $event['type'] == 'message' ) 
   {
+   $userid = $event['source']['userId'];
+   
+   $findtable = pg_query($db,"SELECT COUNT(*) FROM $userid");
+   if( pg_fetch_result($findtable) == 0)
+   {
+	   pg_query($db,"CREATE TABLE $userid (Reply varchar(100) NOT NULL)");
+   }
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-	$car = array('"1"',"1","ค้นหารถ","รถ","หารถ","ยี่ห้อรถ");
-	$tel = array("tel","เบอร์","หาเบอร์","2",'"2"',"โทร","เบอร์โทร");
-	$check = 0;
-	
-	foreach ($car as $value)
-	{
-		if($text == $value)
-		{
-			$check=1;
-		}
-	}
-	foreach ($tel as $value)
-	{
-		if($text == $value)
-		{
-			$check=2;
-		}
-	}
-	
-	if($check ==1)
-	{
-		$result = pg_query($db,"SELECT COUNT(*) FROM Customer");
-		$list = pg_fetch_row($result);
-		$reply_message = " result = $list[0]";
-	}
-	elseif($check ==2)
-	{
-		pg_query($db,"INSERT INTO Customer VALUES ('c01','Somkit')");
-		$reply_message = 'อู่คุณวิชัย 023334444';
-	}
-	elseif($text==3)
-	{
-		$reply_message = 'บัญชีประจำเดือน ธันวาคม 2561, ค่าใช้จ่าย 3,000 บาท, เงินสดหมุนเวียน 400,000 บาท ต้องการเพิ่มข้อมูล กด "4"';
-	}
-	
-		
-	   
-	else
-		$reply_message = 'พิมพ์ "1" เมื่อต้องการค้นหารถ, พิมพ์ "2" เมื่อต้องการค้นหาเบอร์ติดต่อของบริษัท, พิมพ์ "3" เมื่อต้องการตรวจสอบการเงิน';
-   }
+   	if($text=='showid')
+   	{
+	   $reply_message = $userid;
+   	}
+    	elseif($text == 'Total')
+    	{
+	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
+	$yyy = pg_fetch_row($qq);
+	$reply_message = "มีข้อมูลในระบบทั้งหมด ".$yyy[0]." ข้อมูล";
+    	}
+    	else
+    	{
+	$add = pg_query($db,"INSERT INTO $userid VALUES ('$text')");
+	$reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ 'Total' เพื่อตรวจสอบจำนวนข้อมูลในระบบ";}
+   	}
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
   
@@ -122,7 +104,6 @@ if ( sizeof($request_array['events']) > 0 )
   }
  }
 }
-
 echo "OK";
 
 
