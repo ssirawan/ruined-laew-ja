@@ -2,9 +2,9 @@
 
 error_reporting(E_ALL & ~E_NOTICE);
 
-//$db = pg_connect("dbname=dd9n7qflnjtae8 user=ynezixirsjupio password=8aa84c7e317c93709b62657ac0a26d2f8696df1eaee0f6bb108e6cd3a2ca4d22");
 $db = pg_connect("host=ec2-54-235-133-42.compute-1.amazonaws.com port=5432 dbname=dd9n7qflnjtae8 user=ynezixirsjupio password=8aa84c7e317c93709b62657ac0a26d2f8696df1eaee0f6bb108e6cd3a2ca4d22");
 echo $db;
+
 /*
 if(!$db) {echo "error";}
 pg_query($db,"INSERT INTO public.Customer VALUES ('c01','Somkit')");
