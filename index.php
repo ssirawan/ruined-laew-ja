@@ -51,7 +51,7 @@ if ( sizeof($request_array['events']) > 0 )
 		    $benz = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'Benz' "))[1];
 		    $bmw = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'BMW' "))[1];
 		    $toyota = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'Toyota' "))[1];
-		    $reply_message = "ทำการโหวต ".$value." เรียบร้อยแล้ว"."\n\n"."ผลโหวตปัจจุบัน"."\n"."Benz = ".$benz."\n"."BMW = ".$bmw."\n"."Toyota = ".$toyota;
+		    $reply_message = "ทำการโหวต ".$value." เรียบร้อยแล้ว"."\n"."ผลโหวตปัจจุบัน"."\n"."Benz = ".$benz."\n"."BMW = ".$bmw."\n"."Toyota = ".$toyota;
 	    }
     	
 	/*elseif($text == 'Total')
@@ -64,7 +64,7 @@ if ( sizeof($request_array['events']) > 0 )
 	 
     	   else
     	    {
-	    $reply_message = "ร่วมโหวตแบรนด์รถยนต์ที่คุณสนใจ"."\n". "พิมพ์ Benz, BMW หรือ Toyota";
+	    $reply_message = "ร่วมโหวตแบรนด์รถยนต์ที่คุณสนใจด้วยการพิมพ์ Benz, BMW หรือ Toyota";
    	    }
   }
    else
