@@ -19,7 +19,7 @@ while ($list = pg_fetch_row($result))
 }
 */
 $text = "BMW";
-$carlist = ("Benz","BMW","Toyota");
+$carlist = array("Benz","BMW","Toyota");
     foreach ($carlist as $value)
     {
 	    if($text == $value)
