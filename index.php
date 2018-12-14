@@ -33,12 +33,10 @@ if ( sizeof($request_array['events']) > 0 )
   if ( $event['type'] == 'message' ) 
   {
    $userid = $event['source']['userId'];
-   $roww = pg_query($db,"SELECT * FROM CarPoll"); // ตัวแปร = ชื่อแบรนด์ ละ row
-   $list = pg_fetch_array($roww);
-   $carlist = ("Benz","BMW","Toyota");
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
+    $carlist = ("Benz","BMW","Toyota");
     foreach ($carlist as $value)
     {
 	    if($text == $value)
@@ -60,10 +58,10 @@ if ( sizeof($request_array['events']) > 0 )
 	$reply_message = "มีข้อมูลในระบบทั้งหมด ".$yyy[0]." ข้อมูล ณ ".date("d/m/Y")." เวลา ".date("h:i:sa");
     	}
 	*/ 
-    	else
-    	{
-	$reply_message = "ร่วมโหวตแบรนด์รถยนต์ที่คุณสนใจ"."\n". "พิมพ์ Benz, BMW หรือ Toyota";
-   	}
+    	    else
+    	    {
+	    $reply_message = "ร่วมโหวตแบรนด์รถยนต์ที่คุณสนใจ"."\n". "พิมพ์ Benz, BMW หรือ Toyota";
+   	    }
   }
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
