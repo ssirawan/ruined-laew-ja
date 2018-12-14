@@ -64,7 +64,7 @@ if ( sizeof($request_array['events']) > 0 )
 	$yyy = pg_fetch_row($qq);
 	$reply_message = "มีข้อมูลในระบบทั้งหมด ".$yyy[0]." ข้อมูล ณ ".date("d/m/Y")." เวลา ".date("h:i:sa");
     	} 
-
+        
 	 
     	   else
     	    {
@@ -109,4 +109,4 @@ function send_reply_message($url, $post_header, $post_body)
  return $result;
 }
 ?>
-*/
+
