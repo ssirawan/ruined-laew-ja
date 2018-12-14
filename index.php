@@ -18,8 +18,20 @@ while ($list = pg_fetch_row($result))
 	echo $list[1]."<br>";
 }
 */
-$bmw = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'BMW' "))[1];
-echo $bmw;
+$text = "BMW";
+$carlist = ("Benz","BMW","Toyota");
+    foreach ($carlist as $value)
+    {
+	    if($text == $value)
+	    {
+		    //$result = pg_query($db,"SELECT * FROM CarVote WHERE Brand = '$value' ")
+		    $count = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = '$value' "))[1];
+		    $count = $count+1;
+		    pg_query($db,"UPDATE CarVote SET Vote = $count WHERE Brand = '$value'");
+		    echo $count;
+	    }
+    }    
+
 /*
 	
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
