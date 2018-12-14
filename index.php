@@ -66,6 +66,7 @@ if ( sizeof($request_array['events']) > 0 )
     	    {
 	    $reply_message = "ร่วมโหวตแบรนด์รถยนต์ที่คุณสนใจด้วยการพิมพ์ Benz, BMW หรือ Toyota";
    	    }
+    }
   }
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
