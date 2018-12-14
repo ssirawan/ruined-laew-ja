@@ -12,9 +12,9 @@ Vote int
 
 pg_query($db,"INSERT INTO CarPoll VALUES ('Benz',0),('BMW',0),('Toyota',0)");
 $result = pg_query($db,"SELECT * FROM CarPoll");
-while ($list = pg_fetch_row($result))
+while ($list = pg_fetch_array($result))
 {
-	echo $list[0];
+	echo $list."<br>";
 }
 
 /*
