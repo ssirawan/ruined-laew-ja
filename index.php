@@ -4,17 +4,17 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 $db = pg_connect("host=ec2-54-235-133-42.compute-1.amazonaws.com port=5432 dbname=dd9n7qflnjtae8 user=ynezixirsjupio password=8aa84c7e317c93709b62657ac0a26d2f8696df1eaee0f6bb108e6cd3a2ca4d22");
 echo $db;
-
+/*
 pg_query($db,"CREATE TABLE CarPoll (
 Brand varchar(20) NOT NULL,
 Vote int
 )");
-
+*/
 pg_query($db,"INSERT INTO CarPoll VALUES ('Benz',0),('BMW',0),('Toyota',0)");
 $result = pg_query($db,"SELECT * FROM CarPoll");
 while ($list = pg_fetch_row($result))
 {
-	echo $list."<br>";
+	echo $list[0].list[1]."<br>";
 }
 
 /*
