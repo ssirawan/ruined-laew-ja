@@ -9,7 +9,7 @@ pg_query($db,"CREATE TABLE CarVote (
 Brand varchar(20) NOT NULL,
 Vote int
 )");
-*/
+
 pg_query($db,"INSERT INTO CarVote VALUES ('Benz',0),('BMW',0),('Toyota',0)");
 
 $result = pg_query($db,"SELECT * FROM CarVote");
@@ -17,8 +17,8 @@ while ($list = pg_fetch_row($result))
 {
 	echo $list[1]."<br>";
 }
+*/
 
-/*
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'vEcA9SC+uVHF+zBZZQod5Yp/fS2Xn+lUkqHKi1EE1OGXZjtGJlfwrKfkLFu+wOyVPGomLXbzjZOWaK7MQjJsJ3c0kPBhnDo2vxEdES6a2Kk8PnQNwJRLHbPslhqvzC1xk8lM8HLtnERPSG8oXBLNvwdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
@@ -43,30 +43,27 @@ if ( sizeof($request_array['events']) > 0 )
     {
 	    if($text == $value)
 	    {
-		    $count = pg_fetch_array(pg_query($db,"SELECT Vote FROM CarVote WHERE Brand = $value "))[1];
+		    $count = pg_fetch_row(pg_query($db,"SELECT Vote FROM CarVote WHERE Brand = $value "))[1];
 		    $count+=1;
 		    pg_query($db,"UPDATE CarVote SET Count = $count ");
-		    //$reply_message = 'AAA';
+		    $benz = pg_fetch_row(pg_query($db,"SELECT Vote FROM CarVote WHERE Brand = 'Benz' "))[1];
+		    $bmw = pg_fetch_row(pg_query($db,"SELECT Vote FROM CarVote WHERE Brand = 'BMW' "))[1];
+		    $toyota = pg_fetch_row(pg_query($db,"SELECT Vote FROM CarVote WHERE Brand = 'Toyota' "))[1];
+		    $sum = $benz+$bmw+$toyota;
+		    $reply_message = "ทำการโหวต ".$value." เรียบร้อยแล้ว"."\n\n"."ผลโหวตปัจจุบัน"."\n"."Benz = ".$benz."\n"."BMW = ".$bmw."\n"."Toyota = ".$toyota;
 	    }
-    }
-   	if($text=='Benz')
-   	{
-	   $count = pg_query($db,"SELECT Count FROM CarPoll WHERE Brand = 'Benz' ");	
-	   pg_query($db,"UPDATE CarPoll SET Count +=1 ");
-	   $reply_message = "โหวต Benz เรียบร้อยแล้ว คะแนนปัจจุบันคือ"."\n"."";
-   	}
-    	elseif($text == 'Total')
+    	/* elseif($text == 'Total')
     	{
 	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
 	$yyy = pg_fetch_row($qq);
 	$reply_message = "มีข้อมูลในระบบทั้งหมด ".$yyy[0]." ข้อมูล ณ ".date("d/m/Y")." เวลา ".date("h:i:sa");
     	}
+	*/ 
     	else
     	{
-	//$reply_message = "ร่วมโหวตแบรนด์รถยนต์ที่คุณสนใจ"."\n". "ตัวแปรชื่อแบรนด์";	
-	$add = pg_query($db,"INSERT INTO $userid VALUES ('$text')");
-	$reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ 'Total' เพื่อตรวจสอบจำนวนข้อมูลในระบบ";}
+	$reply_message = "ร่วมโหวตแบรนด์รถยนต์ที่คุณสนใจ"."\n". "พิมพ์ Benz, BMW หรือ Toyota";
    	}
+  }
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
   
@@ -105,4 +102,3 @@ function send_reply_message($url, $post_header, $post_body)
  return $result;
 }
 ?>
-*/
