@@ -41,12 +41,8 @@ if ( sizeof($request_array['events']) > 0 )
     $carlist = ("Benz","BMW","Toyota");
     foreach ($carlist as $value)
     {
-	    
-	    while 
 	    if($text == $value)
 	    {
-		    $result = pg_query($db,"SELECT * FROM CarVote);
-
 		    //$result = pg_query($db,"SELECT * FROM CarVote WHERE Brand = '$value' ")
 		    $count = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = $value "))[1];
 		    $count+=1;
@@ -58,13 +54,13 @@ if ( sizeof($request_array['events']) > 0 )
 		    $reply_message = "ทำการโหวต ".$value." เรียบร้อยแล้ว"."\n\n"."ผลโหวตปัจจุบัน"."\n"."Benz = ".$benz."\n"."BMW = ".$bmw."\n"."Toyota = ".$toyota;
 	    }
     	
-	elseif($text == 'Total')
+	/*elseif($text == 'Total')
     	{
 	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
 	$yyy = pg_fetch_row($qq);
 	$reply_message = "มีข้อมูลในระบบทั้งหมด ".$yyy[0]." ข้อมูล ณ ".date("d/m/Y")." เวลา ".date("h:i:sa");
     	} 
-        
+        */
 	 
     	   else
     	    {
