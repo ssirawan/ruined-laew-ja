@@ -7,50 +7,16 @@ echo $db;
 
 pg_query($db,"CREATE TABLE CarPoll (
 Brand varchar(20) NOT NULL,
-Count varchar(10) NOT NULL
+Vote int
 )");
 
-
-/*
-if(!$db) {echo "error";}
-pg_query($db,"INSERT INTO public.Customer VALUES ('c01','Somkit')");
-$result = pg_query($db,"SELECT COUNT(*) FROM public.Customer");
-$list = pg_fetch_row($result);
-echo  "result = $list[0]";
-echo "/////";
-$result2 = pg_query($db,"SELECT 1+1");
-$list2 = pg_fetch_row($result2);
-echo  "result = $list2[0] <br>";
-
-$result = pg_query($db,"SELECT datname FROM pg_catalog.pg_tables");
+pg_query($db,"INSERT INTO CarPoll VALUES ('Benz',0),('BMW',0),('Toyota',0)");
+$result = pg_query($db,"SELECT * FROM CarPoll");
 while ($list = pg_fetch_row($result))
-echo  "result = $list[0]<br>";
+{
+	echo $list[0];
+}
 
-//pg_query($db,"CREATE TABLE Cus (c1 varchar(40) NOT NULL) ");
-
-pg_query($db,"INSERT INTO Cus VALUES ('10')");
-$result = pg_query($db,"SELECT COUNT(*) FROM Cus");
-$list = pg_fetch_row($result);
-echo  "result = $list[0] <br>";
-$result = pg_query($db,"SELECT * FROM Cus");
-while ($list = pg_fetch_row($result))
-echo  "result = $list[0]<br>";
-
-
-pg_query($db,"CREATE TABLE Garage (
-gar_id varchar(10) NOT NULL,
-gar_name varchar(40) NOT NULL),
-gar_tel varchar(10) NOT NULL
-PRIMARY KEY(gar_id)");
-
-pg_query($db,"INSERT INTO Garage VALUES ('g01','อู่คุณ A','0812223333'),
-('g02','อู่คุณ B','0833224444')"),
-('g03','อู่คุณ C','0845554445')"));
-$result = pg_query($db,"SELECT * FROM Garage");
-$list = pg_fetch_row($result);
-echo "result = $list";
-
-*/
 
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'vEcA9SC+uVHF+zBZZQod5Yp/fS2Xn+lUkqHKi1EE1OGXZjtGJlfwrKfkLFu+wOyVPGomLXbzjZOWaK7MQjJsJ3c0kPBhnDo2vxEdES6a2Kk8PnQNwJRLHbPslhqvzC1xk8lM8HLtnERPSG8oXBLNvwdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
@@ -66,18 +32,27 @@ if ( sizeof($request_array['events']) > 0 )
   if ( $event['type'] == 'message' ) 
   {
    $userid = $event['source']['userId'];
-   $findtable = pg_query($db,"SELECT COUNT(*) FROM $userid");
-   // $row = pg_query($db,) ตัวแปร = ชื่อแบรนด์ ละ row
-   if( pg_fetch_result($findtable) == 0)
-   {
-	   pg_query($db,"CREATE TABLE $userid (Reply varchar(100) NOT NULL)");
-   }
+   $roww = pg_query($db,"SELECT * FROM CarPoll"); // ตัวแปร = ชื่อแบรนด์ ละ row
+   $list = pg_fetch_array($roww);
+   $carlist = ("Benz","BMW","Toyota");
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-   	if($text=='showid')
+    foreach ($carlist as $value)
+    {
+	    if($text == $value)
+	    {
+		    $count = pg_fetch_array(pg_query($db,"SELECT Vote FROM CarPoll WHERE Brand = $value "))[1];
+		    $count+=1;
+		    pg_query($db,"UPDATE CarPoll SET Count = $count ");
+		    //$reply_message = 'AAA';
+	    }
+    }
+   	if($text=='Benz')
    	{
-	   $reply_message = $userid;
+	   $count = pg_query($db,"SELECT Count FROM CarPoll WHERE Brand = 'Benz' ");	
+	   pg_query($db,"UPDATE CarPoll SET Count +=1 ");
+	   $reply_message = "โหวต Benz เรียบร้อยแล้ว คะแนนปัจจุบันคือ"."\n"."";
    	}
     	elseif($text == 'Total')
     	{
