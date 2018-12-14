@@ -18,10 +18,9 @@ while ($list = pg_fetch_row($result))
 	echo $list[1]."<br>";
 }
 */
-$benz = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'Benz' "))[1];
-echo $benz;
 
-/*	
+
+	
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'vEcA9SC+uVHF+zBZZQod5Yp/fS2Xn+lUkqHKi1EE1OGXZjtGJlfwrKfkLFu+wOyVPGomLXbzjZOWaK7MQjJsJ3c0kPBhnDo2vxEdES6a2Kk8PnQNwJRLHbPslhqvzC1xk8lM8HLtnERPSG8oXBLNvwdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
@@ -52,20 +51,22 @@ if ( sizeof($request_array['events']) > 0 )
 		    $count = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = $value "))[1];
 		    $count+=1;
 		    pg_query($db,"UPDATE CarVote SET Count = $count ");
-		    $benz = pg_fetch_row(pg_query($db,"SELECT Vote FROM CarVote WHERE Brand = 'Benz' "))[1];
-		    $bmw = pg_fetch_row(pg_query($db,"SELECT Vote FROM CarVote WHERE Brand = 'BMW' "))[1];
-		    $toyota = pg_fetch_row(pg_query($db,"SELECT Vote FROM CarVote WHERE Brand = 'Toyota' "))[1];
+		    $benz = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'Benz' "))[1];
+		    $bmw = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'BMW' "))[1];
+		    $toyota = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'Toyota' "))[1];
 		    $sum = $benz+$bmw+$toyota;
 		    $reply_message = "ทำการโหวต ".$value." เรียบร้อยแล้ว"."\n\n"."ผลโหวตปัจจุบัน"."\n"."Benz = ".$benz."\n"."BMW = ".$bmw."\n"."Toyota = ".$toyota;
 	    }
-    	/* elseif($text == 'Total')
+    	
+	elseif($text == 'Total')
     	{
 	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
 	$yyy = pg_fetch_row($qq);
 	$reply_message = "มีข้อมูลในระบบทั้งหมด ".$yyy[0]." ข้อมูล ณ ".date("d/m/Y")." เวลา ".date("h:i:sa");
-    	}
-	*/ 
-    	   /* else
+    	} 
+
+	 
+    	   else
     	    {
 	    $reply_message = "ร่วมโหวตแบรนด์รถยนต์ที่คุณสนใจ"."\n". "พิมพ์ Benz, BMW หรือ Toyota";
    	    }
