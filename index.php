@@ -18,7 +18,7 @@ while ($list = pg_fetch_row($result))
 	echo $list[1]."<br>";
 }
 */
-$benz = pg_fetch_row(pg_query($db,"SELECT Vote FROM CarVote WHERE Brand = 'Benz' "))[1];
+$benz = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'Benz' "))[1];
 echo $benz;
 
 /*	
