@@ -43,7 +43,7 @@ if ( sizeof($request_array['events']) > 0 )
     {
 	    if($text == $value)
 	    {
-		    $count = pg_fetch_row(pg_query($db,"SELECT Vote FROM CarVote WHERE Brand = $value "))[1];
+		    $count = pg_fetch_row(pg_query($db,"SELECT Vote FROM CarVote WHERE Brand = '$value' "))[1];
 		    $count+=1;
 		    pg_query($db,"UPDATE CarVote SET Count = $count ");
 		    $benz = pg_fetch_row(pg_query($db,"SELECT Vote FROM CarVote WHERE Brand = 'Benz' "))[1];
