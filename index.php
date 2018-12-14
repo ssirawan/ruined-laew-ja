@@ -18,8 +18,9 @@ while ($list = pg_fetch_row($result))
 	echo $list[1]."<br>";
 }
 */
-
-
+$bmw = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'BMW' "))[1];
+echo $bmw;
+/*
 	
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'vEcA9SC+uVHF+zBZZQod5Yp/fS2Xn+lUkqHKi1EE1OGXZjtGJlfwrKfkLFu+wOyVPGomLXbzjZOWaK7MQjJsJ3c0kPBhnDo2vxEdES6a2Kk8PnQNwJRLHbPslhqvzC1xk8lM8HLtnERPSG8oXBLNvwdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
@@ -98,4 +99,4 @@ function send_reply_message($url, $post_header, $post_body)
  return $result;
 }
 ?>
-
+*/
