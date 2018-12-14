@@ -53,20 +53,12 @@ if ( sizeof($request_array['events']) > 0 )
 		    $toyota = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'Toyota' "))[1];
 		    $reply_message = "ทำการโหวต ".$value." เรียบร้อยแล้ว"."\n"."ผลโหวตปัจจุบัน"."\n"."Benz = ".$benz."\n"."BMW = ".$bmw."\n"."Toyota = ".$toyota;
 	    }
-    	
-	/*elseif($text == 'Total')
-    	{
-	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
-	$yyy = pg_fetch_row($qq);
-	$reply_message = "มีข้อมูลในระบบทั้งหมด ".$yyy[0]." ข้อมูล ณ ".date("d/m/Y")." เวลา ".date("h:i:sa");
-    	} 
-        */
-	 
-    	   else
+    }
+     	   if ($reply_message == '')
     	    {
 	    $reply_message = "ร่วมโหวตแบรนด์รถยนต์ที่คุณสนใจด้วยการพิมพ์ Benz, BMW หรือ Toyota";
    	    }
-    }
+    
   }
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
