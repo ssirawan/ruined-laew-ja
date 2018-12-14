@@ -47,10 +47,10 @@ if ( sizeof($request_array['events']) > 0 )
 		    $count = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = $value "))[1];
 		    $count+=1;
 		    pg_query($db,"UPDATE CarVote SET Count = $count ");
+		    
 		    $benz = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'Benz' "))[1];
 		    $bmw = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'BMW' "))[1];
 		    $toyota = pg_fetch_row(pg_query($db,"SELECT * FROM CarVote WHERE Brand = 'Toyota' "))[1];
-		    $sum = $benz+$bmw+$toyota;
 		    $reply_message = "ทำการโหวต ".$value." เรียบร้อยแล้ว"."\n\n"."ผลโหวตปัจจุบัน"."\n"."Benz = ".$benz."\n"."BMW = ".$bmw."\n"."Toyota = ".$toyota;
 	    }
     	
