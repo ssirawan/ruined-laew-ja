@@ -14,7 +14,7 @@ Vote int
 $result = pg_query($db,"SELECT * FROM CarPoll");
 while ($list = pg_fetch_row($result))
 {
-	echo $list[0].list[1]."<br>";
+	echo $list[1]"<br>";
 }
 
 /*
