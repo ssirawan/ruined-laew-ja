@@ -18,8 +18,8 @@
 
 namespace LINE\LINEBot;
 
-use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBuilder;
-use LINE\LINEBot\RichMenuBuilder\RichMenuSizeBuilder;
+use LINEBot\RichMenuBuilder\RichMenuAreaBuilder;
+use LINEBot\RichMenuBuilder\RichMenuSizeBuilder;
 
 /**
  * A builder class for rich menu.
