@@ -1,18 +1,18 @@
-use LINEBot\RichMenuBuilder;
+use LINEBot\RichMenuBuilder; //ชื่อ namespace???
+use LINE\LINEBot\HTTPClient;
+
 
 $API_URL = 'https://api.line.me/v2/bot/richmenu';
 $ACCESS_TOKEN = 'vEcA9SC+uVHF+zBZZQod5Yp/fS2Xn+lUkqHKi1EE1OGXZjtGJlfwrKfkLFu+wOyVPGomLXbzjZOWaK7MQjJsJ3c0kPBhnDo2vxEdES6a2Kk8PnQNwJRLHbPslhqvzC1xk8lM8HLtnERPSG8oXBLNvwdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
+$CH_SECRET = 'e33ac5e982da548d1c1984ac6a97a69e';
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
-/*
-$request = file_get_contents('php://input');   
-$request_array = json_decode($request, true);  
-*/
 
-$sizeBuilder = self(1686, 2500);
-$selected = true;
-$name = 'richmenu';
-$chatbartext = 'Bulletin';
-$areabuilders = [
+$httpClient = new \LINEBot\HTTPClient\CurlHTTPClient(getenv($ACCESS_TOKEN));
+$bot = new \LINEBot($httpClient, ['channelSecret' => getenv($CH_SECRET)]);
+$signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
+
+$richmenu_post_body = {"size": {"width": 2500,"height": 1686},"selected": true,"name": "Controller","chatBarText": "index",
+"areabuilders": [
     {
       "bounds" : {
         "x": 0,
@@ -65,31 +65,22 @@ $areabuilders = [
         "data": "Data 4"
       }
     }
-  ];
+  ]
+};
 
+//$richmenu = new RichMenuBuilder($sizeBuilder,$selected,$name,$chatbartext,$areabuilders);
+$send_richmenu = create_richmenu($API_URL, $post_header,$richmenu_post_body);
 
-$create = __construct($sizeBuilder, $selected, $name, $chatBarText, $areaBuilders);
-
-
-function __construct($sizeBuilder, $selected, $name, $chatBarText, $areaBuilders)
-    {
-        $this->sizeBuilder = $sizeBuilder;
-        $this->selected = $selected;
-        $this->name = $name;
-        $this->chatBarText = $chatBarText;
-        $this->areaBuilders = $areaBuilders;
-    }
-function build()
-    {
-        $areas = [];
-        foreach ($this->areaBuilders as $areaBuilder) {
-            $areas[] = $areaBuilder->build();
-        }
-        return [
-            'size' => $this->sizeBuilder->build(),
-            'selected' => $this->selected,
-            'name' => $this->name,
-            'chatBarText' => $this->chatBarText,
-            'areas' => $areas,
-        ];
+function create_richmenu($url, $post_header, $post_body)
+{
+ $ch = curl_init($url);
+ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+ curl_setopt($ch, CURLOPT_HTTPHEADER, $post_header);
+ curl_setopt($ch, CURLOPT_POSTFIELDS, $post_body);
+ curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+ $result = curl_exec($ch);
+ curl_close($ch);
+ return $result;
+}
 ?>
