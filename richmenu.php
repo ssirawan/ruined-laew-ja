@@ -8,9 +8,9 @@ $ACCESS_TOKEN = 'vEcA9SC+uVHF+zBZZQod5Yp/fS2Xn+lUkqHKi1EE1OGXZjtGJlfwrKfkLFu+wOy
 $CH_SECRET = 'e33ac5e982da548d1c1984ac6a97a69e';
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
 
-$httpClient = new LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv($ACCESS_TOKEN));
-$bot = new LINE\LINEBot($httpClient, ['channelSecret' => getenv($CH_SECRET)]);
-$signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
+//$httpClient = new LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv($ACCESS_TOKEN));
+//$bot = new LINE\LINEBot($httpClient, ['channelSecret' => getenv($CH_SECRET)]);
+//$signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
 
 $richmenu_post_body = {"size": {"width": 2500,"height": 1686},"selected": true,"name": "Controller","chatBarText": "index",
 "areabuilders": [
@@ -69,8 +69,9 @@ $richmenu_post_body = {"size": {"width": 2500,"height": 1686},"selected": true,"
   ]
 };
 
-//$richmenu = new RichMenuBuilder($sizeBuilder,$selected,$name,$chatbartext,$areabuilders);
+
 $send_richmenu = create_richmenu($API_URL, $post_header,$richmenu_post_body);
+
 
 function create_richmenu($url, $post_header, $post_body)
 {
