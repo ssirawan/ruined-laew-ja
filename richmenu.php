@@ -1,5 +1,5 @@
-use LINEBot\RichMenuBuilder; //ชื่อ namespace???
-use LINE\LINEBot\HTTPClient;
+// use LINE\LINEBot\RichMenuBuilder; 
+// use LINE\LINEBot\HTTPClient;
 
 
 $API_URL = 'https://api.line.me/v2/bot/richmenu';
@@ -7,8 +7,8 @@ $ACCESS_TOKEN = 'vEcA9SC+uVHF+zBZZQod5Yp/fS2Xn+lUkqHKi1EE1OGXZjtGJlfwrKfkLFu+wOy
 $CH_SECRET = 'e33ac5e982da548d1c1984ac6a97a69e';
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
 
-$httpClient = new \LINEBot\HTTPClient\CurlHTTPClient(getenv($ACCESS_TOKEN));
-$bot = new \LINEBot($httpClient, ['channelSecret' => getenv($CH_SECRET)]);
+$httpClient = new LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv($ACCESS_TOKEN));
+$bot = new LINE\LINEBot($httpClient, ['channelSecret' => getenv($CH_SECRET)]);
 $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
 
 $richmenu_post_body = {"size": {"width": 2500,"height": 1686},"selected": true,"name": "Controller","chatBarText": "index",
