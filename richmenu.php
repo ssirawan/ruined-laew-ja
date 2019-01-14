@@ -1,3 +1,4 @@
+<?php
 // use LINE\LINEBot\RichMenuBuilder; 
 // use LINE\LINEBot\HTTPClient;
 
@@ -83,4 +84,5 @@ function create_richmenu($url, $post_header, $post_body)
  curl_close($ch);
  return $result;
 }
+
 ?>
